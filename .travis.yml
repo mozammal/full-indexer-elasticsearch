@@ -1,0 +1,15 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+  - elasticsearch
+
+jdk:
+  - openjdk11
+
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script:
+  - mvn test

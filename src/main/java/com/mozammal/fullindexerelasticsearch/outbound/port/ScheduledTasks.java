@@ -1,4 +1,3 @@
-/*
 package com.mozammal.fullindexerelasticsearch.outbound.port;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,7 +41,7 @@ public class ScheduledTasks {
     LocalDate currentDate = LocalDate.now();
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String curDateInStringFormat = currentDate.format(dateTimeFormatter);
-    String query = "love";
+    String query = "beautiful place";
     String urlToFetchData =
         URL_NEWS_API
             + "?q="
@@ -63,4 +62,3 @@ public class ScheduledTasks {
     log.info("articles: {}", responseArticlesDtoFromNewsAPI.getArticles().size());
   }
 }
-*/
