@@ -7,33 +7,35 @@ services:
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - http.cors.enabled=true
-      - http.cors.allow-origin=*
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     ports:
       - 9200:9200
       - 9300:9300
     volumes:
       - elk-data:/var/lib/elasticsearch
-      - ./elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml
     networks:
       - elk-network
 
   full-indexer-service:
-     container_name: full-indexer-service-container
-     image: full-indexer-service
-     build:
-       context: ./
-       dockerfile: Dockerfile
-     ports:
+    image: full-indexer-service
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
       - 8080:8080
-     environment:
-       ELK_IP: elk1:9300
-       ELK_IP1: http://elk1:9200
+    environment:
+      ELK_IP: elk1:9300
+      ELK_IP1: http://elk1:9200
       CLUSTER_NAME: docker-cluster
-     depends_on:
+    depends_on:
       - elk1
-     networks:
+    networks:
       - elk-network
+
 
 volumes:
   elk-data:
