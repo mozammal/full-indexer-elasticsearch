@@ -27,6 +27,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+    restart: always
     environment:
       ELK_IP: elk1:9300
       ELK_IP1: http://elk1:9200

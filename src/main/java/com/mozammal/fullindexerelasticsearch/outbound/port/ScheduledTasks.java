@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Slf4j
@@ -28,8 +29,9 @@ public class ScheduledTasks {
   }
 
   @Scheduled(fixedRate = 86400000)
-  public void fetchDocumentsFromNewsAPI() throws JsonProcessingException {
+  public void fetchDocumentsFromNewsAPI() throws JsonProcessingException, UnsupportedEncodingException {
     SimpleRestApiCallFactory simpleRestApiCallFactory = new SimpleRestApiCallFactory();
+    log.info("running scheduler!");
     RestApiCallStrategy newsAPIsStrategy = simpleRestApiCallFactory.createRestApiCall("newsAPIs", apiKey);
     List<ArticleDocument> articleDocuments = newsAPIsStrategy.call();
     articleDocuments.forEach(article -> documentContentRepository.save(article));

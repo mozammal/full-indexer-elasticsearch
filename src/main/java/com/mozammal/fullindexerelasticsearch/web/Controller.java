@@ -30,6 +30,7 @@ public class Controller {
       description = "This endpoint is used to index a document")
   @PostMapping("/docs")
   public ArticleDocument save(@RequestBody ArticleDocument articleDocument) {
+    log.info("document: {}", articleDocument);
     documentContentRepository.save(articleDocument);
     return articleDocument;
   }
