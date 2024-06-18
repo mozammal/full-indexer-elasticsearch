@@ -16,13 +16,11 @@ clone the repo with the command given below:
 git clone https://github.com/mozammal/full-indexer-elasticsearch.git
 ```
 
-One way to run this application is to use docker-compose from the command line
-(tested on ubuntu 18.04.1):
+One way to run this application is to use docker-compose from the command line:
 
 ```shell
 cd full-indexer-elasticsearch
 mvn clean package
-sudo sysctl -w vm.max_map_count=262144
 sudo docker-compose up -d
 ```
 
