@@ -36,7 +36,7 @@ sudo docker-compose stop
 The REST APIs documentation can be accessed at 
 - [APIs doc link](http://localhost:8080/swagger-ui.html) 
 
-# Sample JSON Payload for the POSt Request:
+# Sample JSON Payload for the POST Request:
 
 ```shell
 {
